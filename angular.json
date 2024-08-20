@@ -26,8 +26,10 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
+          "styles": [
+              "src/styles.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+
             ],
             "scripts": []
           },
@@ -127,42 +129,38 @@
       "projectType": "library",
       "root": "projects/ngx-treeview",
       "sourceRoot": "projects/ngx-treeview/src",
-      "prefix": "ngx",
+      "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ngx-treeview/tsconfig.lib.json",
             "project": "projects/ngx-treeview/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/ngx-treeview/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-treeview/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-treeview/src/test.ts",
             "tsConfig": "projects/ngx-treeview/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-treeview/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-treeview/tsconfig.lib.json",
-              "projects/ngx-treeview/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
             ]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-ngx-treeview"
+  "defaultProject": "angular-ngx-treeview",
+  "cli": {
+    "analytics": "dd83e0e6-5a42-4109-b207-8a3de5637fc5"
+  }
 }
